@@ -69,11 +69,11 @@ class Companies(View):
         return render(request,
                       settings.TEMPLATES_MAIN_PREFIX + '/all_companies.html')
 
-class GenericHTMLView(TemplateView):
+class SingleCompany(TemplateView):
     def get(self, request, page, *args, **kwargs):
         self.template_name = settings.TEMPLATES_COMPANIES_PREFIX +\
                              '/' + page + '.html'
-        response = super(GenericHTMLView, self).get(request, *args, **kwargs)
+        response = super(SingleCompany, self).get(request, *args, **kwargs)
         try:
             return response.render()
         except TemplateDoesNotExist:
@@ -102,7 +102,7 @@ class BlogPosts(View):
         single_post = get_object_or_404(Post, slug=post)
 
         context = {
-            'post': single_post
+            'single_post': single_post
 
         }
         return render(request, settings.TEMPLATES_MAIN_PREFIX + "/single_blog_posts.html", context)

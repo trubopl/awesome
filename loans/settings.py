@@ -10,8 +10,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'e130mnc9r)h_c9t5371doom2o+nhe+ofej^@a*9o6%gh!7pdyf'
 
+
+#DEBUG = False
+
+#ALLOWED_HOSTS = ['turbopozyczka.pl', '.turbopozyczka.pl', '185.201.113.104']
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -67,7 +73,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'loans',
-        'USER': 'root',
+        'USER': 'galander',
         'PASSWORD': 'szatan666',
         'HOST': '',
         'PORT': ''
@@ -112,6 +118,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL='/media/'
+
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media/')
 
 TEMPLATES_MAIN_PREFIX = 'main'

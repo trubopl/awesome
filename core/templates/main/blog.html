@@ -11,7 +11,7 @@ THIS PAGE IS GONNA EXTAND BASE TEMPLATE BUT ITS BLOG POST ! ! !
     <div>
         <p>published: {{ post.published_date }}</p>
         <h1><a href="blog/{{ post.title }}">{{ post.title }}</a></h1>
-        <p>{{ post.body|linebreaksbr }}</p>
+        <p>{{ post.description|linebreaksbr }}</p>
     </div>
 {% endfor %}
 </body>
