@@ -2,13 +2,24 @@ from django.conf.urls import url
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path
-from core.views import Index, PaydayLoans, FirstFreeLoan, SingleCompany,\
-    Companies, Blog, BlogPosts
+from django.contrib.sitemaps.views import sitemap
 from django.conf.urls.static import static
 
+from core.views import Index, PaydayLoans, FirstFreeLoan, SingleCompany,\
+    Companies, Blog, BlogPosts
+from core.sitemaps import StaticSitemap, PostsSitemap
+
+
+
+
+sitemaps = {
+    'static': StaticSitemap,
+    'posts:': PostsSitemap
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
     url(r'^$', Index.as_view(), name='index'),
     url(r'^kalkulator-wyniki/', Index.as_view(), name='generate'),
     url(r'^chwilowki/', PaydayLoans.as_view(), name='payday_loans'),
