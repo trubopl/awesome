@@ -11,15 +11,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'e130mnc9r)h_c9t5371doom2o+nhe+ofej^@a*9o6%gh!7pdyf'
 
 
-DEBUG = False
+#DEBUG = False
 
-ALLOWED_HOSTS = ['turbopozyczka.pl', '.turbopozyczka.pl', '185.201.113.104']
+#ALLOWED_HOSTS = ['turbopozyczka.pl', '.turbopozyczka.pl', '185.201.113.104']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
-#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition

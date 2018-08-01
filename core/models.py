@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from django.urls import reverse
 
 
 
@@ -68,4 +69,5 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return f'/blog/{self.slug}/'
+        return '/blog/' + self.slug
+
