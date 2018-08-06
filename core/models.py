@@ -1,26 +1,58 @@
 from django.db import models
-from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 from ckeditor.fields import RichTextField
-from django.urls import reverse
-
 
 
 class CompaniesLoans(models.Model):
     name = models.CharField(max_length=100)
     min_amount = models.IntegerField()
     max_amount = models.IntegerField()
-    min_days = models.IntegerField()
-    max_days = models.IntegerField()
+    min_duration = models.IntegerField()
+    max_duration = models.IntegerField()
     first_free = models.BooleanField()
     amount_first_free = models.IntegerField()
-    installment_loan = models.BooleanField()
-    installment_min_amount = models.IntegerField()
-    installment_max_amount = models.IntegerField()
-    installment_min_days = models.IntegerField()
-    installment_max_days = models.IntegerField()
+    age = models.CharField(max_length=100)
+    verification = models.CharField(max_length=100)
     miscs = models.CharField(max_length=250, blank=True)
+
+    # <-- Fields for representative example -->
+    example_amount = models.IntegerField()
+    example_duration = models.IntegerField()
+    example_fixed_interest_rate = models.IntegerField()
+    example_total_amount_repay = models.IntegerField()
+    example_total_installment_amount = models.IntegerField()
+    example_capital_interest = models.IntegerField()
+    example_provision = models.IntegerField()
+    example_rrso = models.IntegerField()
+    example_installment_amount = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class CompaniesInstallment(models.Model):
+    inst_name = models.CharField(max_length=100)
+    inst_min_amount = models.IntegerField()
+    inst_max_amount = models.IntegerField()
+    inst_min_duration = models.IntegerField()
+    inst_max_duration = models.IntegerField()
+    inst_first_free = models.BooleanField()
+    inst_amount_first_free = models.IntegerField()
+    inst_age = models.CharField(max_length=100)
+    inst_verification = models.CharField(max_length=100)
+    inst_miscs = models.CharField(max_length=250, blank=True)
+
+    # <-- Fields for representative example -->
+    inst_example_amount = models.IntegerField()
+    inst_example_duration = models.IntegerField()
+    inst_example_fixed_interest_rate = models.IntegerField()
+    inst_example_total_amount_repay = models.IntegerField()
+    inst_example_total_installment_amount = models.IntegerField()
+    inst_example_capital_interest = models.IntegerField()
+    inst_example_provision = models.IntegerField()
+    inst_example_rrso = models.IntegerField()
+    inst_example_installment_amount = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -55,11 +87,10 @@ class Post(models.Model):
         #if title_exists:
             #raise ValidationError('Title already exists ! ')
 
-
-    def save(self):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         #self.validate_title()
-        super(Post, self).save()
+        super(Post, self).save(*args, **kwargs)
 
     def publish(self):
         self.published_date = timezone.now()

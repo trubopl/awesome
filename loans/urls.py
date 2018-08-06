@@ -7,14 +7,13 @@ from django.conf.urls.static import static
 
 from core.views import Index, PaydayLoans, FirstFreeLoan, SingleCompany,\
     Companies, Blog, BlogPosts
-from core.sitemaps import StaticSitemap, PostsSitemap
-
-
+from core.sitemaps import StaticSitemap, PostsSitemap, SingleCompanySitemap
 
 
 sitemaps = {
     'static': StaticSitemap,
-    'posts:': PostsSitemap
+    'posts:': PostsSitemap,
+    'companies': SingleCompanySitemap,
 }
 
 urlpatterns = [
@@ -27,7 +26,7 @@ urlpatterns = [
     url(r'^blog/(?P<post>[\w-]+)/$', BlogPosts.as_view(), name="blog_posts"),
     url(r'^darmowe-pozyczki/', FirstFreeLoan.as_view(), name='first_free_loan'),
     url(r'^firmy/$', Companies.as_view(), name='companies'),
-    url(r'^firmy/(?P<page>.+)$', SingleCompany.as_view()),
+    url(r'^firmy/(?P<page>.+)$', SingleCompany.as_view(), name='single_company'),
 
 ]
 

@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.list import ListView
 from django.views import View
 from django.views.generic import TemplateView
 from django.template import TemplateDoesNotExist
@@ -59,7 +60,7 @@ class FirstFreeLoan(View):
         return render(request,
                       settings.TEMPLATES_MAIN_PREFIX + '/first_free_loan.html')
 
-
+# < -- ad query set and join with itertools chain -- >
 class Companies(View):
 
     def post(self, request):
@@ -68,6 +69,7 @@ class Companies(View):
     def get(self, request):
         return render(request,
                       settings.TEMPLATES_MAIN_PREFIX + '/all_companies.html')
+
 
 class SingleCompany(TemplateView):
     def get(self, request, page, *args, **kwargs):
@@ -79,20 +81,15 @@ class SingleCompany(TemplateView):
         except TemplateDoesNotExist:
             raise Http404()
 
-class Blog(View):
-    def post(self, request):
-        pass
 
-    def get(self, request):
-        posts = Post.objects.filter(published_date__lte=timezone.now()).\
-            order_by('published_date')
+class Blog(ListView):
+    model = Post
+    queryset = Post.objects.filter(published_date__lte=timezone.now()).\
+        order_by('published_date')
+    paginate_by = 5
+    context_object_name = 'posts'
+    template_name = settings.TEMPLATES_MAIN_PREFIX + "/blog.html"
 
-        context = {
-            'posts': posts,
-        }
-
-        return render(request,
-                      settings.TEMPLATES_MAIN_PREFIX + "/blog.html", context)
 
 class BlogPosts(View):
     def post(self, request):
