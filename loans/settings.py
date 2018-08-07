@@ -33,8 +33,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.sitemaps',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -14,6 +14,8 @@ class CompaniesAdmin(admin.ModelAdmin):
                             'amount_first_free',
                             'age',
                             'verification',
+                            'extension_period',
+                            'order',
                             'miscs'
                         )
                     }

@@ -1,7 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
-from ckeditor.fields import RichTextField
+
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class CompaniesLoans(models.Model):
@@ -14,7 +15,10 @@ class CompaniesLoans(models.Model):
     amount_first_free = models.IntegerField()
     age = models.CharField(max_length=100)
     verification = models.CharField(max_length=100)
+    extension_period = models.BooleanField()
+    order = models.IntegerField()
     miscs = models.CharField(max_length=250, blank=True)
+
 
     # <-- Fields for representative example -->
     example_amount = models.IntegerField()
@@ -41,6 +45,8 @@ class CompaniesInstallment(models.Model):
     inst_amount_first_free = models.IntegerField()
     inst_age = models.CharField(max_length=100)
     inst_verification = models.CharField(max_length=100)
+    inst_extension_period = models.BooleanField()
+    inst_order = models.IntegerField()
     inst_miscs = models.CharField(max_length=250, blank=True)
 
     # <-- Fields for representative example -->
@@ -74,7 +80,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255, null=False)
     published_date = models.DateTimeField(default=timezone.now(), blank=True, null=True)
-    description = RichTextField(null=False)
+    description = RichTextUploadingField(null=False)
     meta_title = models.CharField(max_length=158, null=False)
     meta_description = models.CharField(max_length=320, null=False)
     slug = models.SlugField(default='', null=False)
