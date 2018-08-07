@@ -11,12 +11,10 @@ THIS PAGE IS GONNA EXTAND BASE TEMPLATE BUT ITS BLOG POST ! ! !
 {% for post in posts %}
     <div>
         <p>published: {{ post.published_date }}</p>
-        <h1><a href="blog/{{ post.title|safe }}">{{ post.title }}</a></h1>
-        <p>{{ post.description|safe }}</p>
+        <h1><a href="blog/{{ post.title }}">{{ post.title }}</a></h1>
+        <p>{{post.description|safe }}</p>
     </div>
 {% endfor %}
-</body>
-</html>
 
 {% if is_paginated %}
   <ul class="pagination">
@@ -39,3 +37,5 @@ THIS PAGE IS GONNA EXTAND BASE TEMPLATE BUT ITS BLOG POST ! ! !
     {% endif %}
   </ul>
 {% endif %}
+</body>
+</html>
