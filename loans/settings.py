@@ -77,8 +77,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'loans',
-        'USER': 'galander666',
-        'PASSWORD': 'szatan666',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '',
         'PORT': ''
     }
@@ -128,5 +128,6 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'media/')
 TEMPLATES_MAIN_PREFIX = 'main'
 
 TEMPLATES_COMPANIES_PREFIX = 'companies'
+
 
 

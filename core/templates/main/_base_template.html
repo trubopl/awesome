@@ -1,8 +1,9 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Base template</title>
+            {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}" type="text/css">
 </head>
 <body>
 BASE TEMPLATE DLA GLOWNY STRON TEN Z MAIN<br>
@@ -13,4 +14,5 @@ STRONGA GLOWNA
 {% include "main/calculator.html" %}
 </body>
 </html>
+
 
